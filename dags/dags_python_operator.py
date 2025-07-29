@@ -1,5 +1,5 @@
 from airflow import DAG
-from airflow.providers.python.operators.python import PythonOperator
+from airflow.providers.standard.operators.python import PythonOperator
 import pendulum
 import random
 
