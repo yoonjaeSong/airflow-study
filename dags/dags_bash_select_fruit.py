@@ -22,4 +22,4 @@ with DAG(
         bash_command="/opt/airflow/plugins/select_fruit.sh ORANGE",
     )
 
-    run_t1 >> run_orange
+    run_apple >> run_orange
