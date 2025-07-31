@@ -14,10 +14,9 @@ with DAG(
 ) as dag:
 
     @task(task_id="python_task_1")
-    def print_context(ds=None, **kwargs):
-        """Print the Airflow context and ds variable from the context."""
-        pprint(kwargs)
-        print(ds)
+    def print_context(arg1):
+        """전달받은 arg1을 출력합니다."""
+        print(f"arg1: {arg1}")
         return "Whatever you return gets printed in the logs"
 
     run_this = print_context('task_decorator')
