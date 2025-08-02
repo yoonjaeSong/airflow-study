@@ -2,7 +2,7 @@ from airflow import DAG
 from airflow.providers.standard.operators.python import PythonOperator
 import pendulum
 
-from plugins.common.common_func import regist
+from common.common_func import regist
 
 
 with DAG(
