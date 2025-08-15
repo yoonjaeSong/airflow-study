@@ -1,4 +1,5 @@
 from airflow import DAG
+from airflow.providers.standard.operators.branch import BaseBranchOperator
 import pendulum
 from airflow.decorators import task
 from airflow.providers.standard.operators.python import PythonOperator
@@ -12,17 +13,20 @@ with DAG(
     tags=["example", "example2", "airflow-study"],
 ) as dag:
 
-    @task.branch(task_id='python_branch_task')
-    def select_random():
-        import random
-        
-        item_list = ['A', 'B', 'C']
-        selected_item = random.choice(item_list)
-        
-        if selected_item == 'A':
-            return 'task_a'
-        elif selected_item in ['B', 'C']:
-            return ['task_b', 'task_c']
+    class CustomBranchOperator(BaseBranchOperator):
+        def select_random(self, context):
+            import random
+            print(context);
+            
+            item_list = ['A', 'B', 'C']
+            selected_item = random.choice(item_list)
+            
+            if selected_item == 'A':
+                return 'task_a'
+            elif selected_item in ['B', 'C']:
+                return ['task_b', 'task_c']
+
+    custom_branch_operator = CustomBranchOperator(task_id='python_branch_task')
     
     def common_func(**kwargs):
         print(kwargs['selected'])
@@ -45,4 +49,4 @@ with DAG(
         op_kwargs={'selected': 'C'}
     )
     
-    select_random() >> [task_a, task_b, task_c]
+    custom_branch_operator >> [task_a, task_b, task_c]
