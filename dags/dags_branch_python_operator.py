@@ -1,7 +1,6 @@
 from airflow import DAG
 import pendulum
 from airflow.decorators import task
-from airflow.providers.standard.operators.python import BranchPythonOperator
 from airflow.providers.standard.operators.python import PythonOperator
 
 
