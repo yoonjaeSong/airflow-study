@@ -14,9 +14,9 @@ with DAG(
 ) as dag:
 
     class CustomBranchOperator(BaseBranchOperator):
-        def select_random(self, context):
+        def choose_branch(self, context):
             import random
-            print(context);
+            print(context)
             
             item_list = ['A', 'B', 'C']
             selected_item = random.choice(item_list)
