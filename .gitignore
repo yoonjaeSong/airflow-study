@@ -4,3 +4,7 @@ settings.json
 .env
 
 .idea/
+
+.pyrightconfig.json
+.python-version
+

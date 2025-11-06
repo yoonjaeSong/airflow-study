@@ -1,0 +1,13 @@
+[project]
+name = "airflow-study"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "apache-airflow==3.0.6",
+    "black>=25.9.0",
+    "mypy>=1.18.2",
+    "pyright>=1.1.407",
+    "ruff>=0.14.3",
+]
